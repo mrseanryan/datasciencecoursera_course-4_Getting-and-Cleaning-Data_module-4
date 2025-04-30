@@ -1,1 +1,1 @@
-./go-r.sh ./Scripts/run_analysis.R
+./go-r.sh ./run_analysis.R

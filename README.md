@@ -9,7 +9,7 @@ Required to submit:
 - see [Data/merged_means-by-activity-and-subject.txt](./Data/merged_means-by-activity-and-subject.txt)
 
 2) script for performing the analysis
-- see [Scripts/run_analysis.R](./Scripts/run_analysis.R)
+- see [run_analysis.R](./run_analysis.R)
 - to execute, you can:
 
   - use the `go.sh` bash script:
@@ -21,7 +21,7 @@ Required to submit:
   - or else run the script directly:
 
 ```bash
-Rscript ./Scripts/run_analysis.R
+Rscript ./run_analysis.R
 ```
 
 
@@ -38,7 +38,7 @@ Rscript ./Scripts/run_analysis.R
 | Script Name | Description |
 |---|---|
 | go.sh | Shell script to run the R script |
-| Scripts/run_analysis.R | The main R script to download the data and perform the analysis. |
+| run_analysis.R | The main R script to download the data and perform the analysis. |
 | go-r.sh | Shell script to run R - assumes that Rscript is already on the PATH. |
 
 ## Data Provenance
@@ -51,7 +51,7 @@ The original data for the project:
 
 ## Tasks Done
 
-- create one R script called [run_analysis.R](./Scripts/run_analysis.R) that does the following:
+- create one R script called [run_analysis.R](./run_analysis.R) that does the following:
   1. Merges the training and the test sets to create one data set.
   2. Extracts only the measurements on the mean and standard deviation for each measurement. 
   3. Uses descriptive activity names to name the activities in the data set

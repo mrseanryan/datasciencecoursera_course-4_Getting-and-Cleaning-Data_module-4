@@ -1,6 +1,6 @@
-source("Scripts/utils.download.R")
-source("Scripts/utils.print.R")
-source("Scripts/utils.tryCatch.R")
+source("utils.download.R")
+source("utils.print.R")
+source("utils.tryCatch.R")
 
 print_section("Getting and Cleaning Data - Wearable Computing")
 
