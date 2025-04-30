@@ -71,9 +71,6 @@ get_merged_data <- function() {
   if (is_debug) str_big(train_data)
 
   print_section("Merge Test and Train data")
-  # install_if_missing("dplyr")
-  # library(dplyr)
-  # merged_data = merge(test_data, train_data, by.x="solution_id", by.y="id", all=TRUE)  # all is like a left join (makes NAs for missing values)
   merged_data <- rbind(test_data, train_data)
 
   return(merged_data)
@@ -167,6 +164,7 @@ clean_column_names_final <- function(new_names) {
   new_names <- gsub("__+", "_", new_names)
   new_names <- gsub("_$", "", new_names)
   new_names <- gsub("-$", "", new_names)
+  new_names <- gsub("-mean", "", new_names)
 
   return(new_names)
 }
@@ -240,6 +238,7 @@ selected_columns_data_means_grouped <- selected_columns_data_means %>%
     .groups = "drop"
   )
 selected_columns_data_means_grouped <- add_record_column(selected_columns_data_means_grouped)
+colnames(selected_columns_data_means_grouped) <- clean_column_names_final(colnames(selected_columns_data_means_grouped))
 selected_columns_data_means_grouped <- sort_columns(selected_columns_data_means_grouped)
 
 path_to_output_dir <- "Data"
