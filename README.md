@@ -10,8 +10,22 @@ Required to submit:
 
 2) script for performing the analysis
 - see [Scripts/run_analysis.R](./Scripts/run_analysis.R)
-- to execute, you can use the `go.sh` bash script
-- the script performs ALL steps, including downloading the original raw data
+- to execute, you can:
+
+  - use the `go.sh` bash script:
+
+```bash
+./go.sh
+```
+
+  - or else run the script directly:
+
+```bash
+Rscript ./Scripts/run_analysis.R
+```
+
+
+- the script performs ALL the steps, including downloading the original raw data
 
 3) a code book that describes the variables, the data, and any transformations or work that you performed to clean up the data called CodeBook.md.
 
