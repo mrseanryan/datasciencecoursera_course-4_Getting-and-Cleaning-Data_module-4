@@ -100,9 +100,6 @@ load_or_get_merged_data <- function() {
 }
 
 clean_column_names <- function(new_names) {
-  # Replace the first column "" with "Record"
-  # new_names[1] <- "Record"
-
   # De-abbreviate t
   new_names <- sub("^t", "Time_", new_names)
   new_names <- gsub("angle_t", "angle_Time_", new_names)
@@ -142,14 +139,38 @@ clean_column_names <- function(new_names) {
   new_names[-2] <- gsub("angle_tBody", "angle_Time_Body", new_names[-2])
 
   # Tidy duplication in names
-  new_names <- gsub("-mean", "_mean", new_names)
   new_names <- gsub("BodyBody", "Body", new_names)
 
   # Tidy underscores
-  new_names <- gsub("_+$", "", new_names)
-  new_names <- gsub("__+", "_", new_names)
+  new_names <- gsub("__", "_", new_names)
+  new_names <- gsub("_$", "", new_names)
+  new_names <- gsub("-$", "", new_names)
+
   return(new_names)
 }
+
+
+clean_column_names_final <- function(new_names) {
+  # Tidy duplication in names
+  new_names <- gsub("_meanFreq_", "_", new_names)
+  new_names <- gsub("mean", "", new_names)
+  new_names <- gsub("Mean", "", new_names)
+
+  new_names <- gsub("BodyBody", "Body", new_names)
+
+  # Add a prefix mean_
+  exclude <- c("Record", "Subject", "ActivityLabel")
+  new_names <- ifelse(new_names %in% exclude, new_names, paste0("mean_", new_names))
+
+  # Tidy underscores
+  new_names <- gsub("-_", "_", new_names)
+  new_names <- gsub("__+", "_", new_names)
+  new_names <- gsub("_$", "", new_names)
+  new_names <- gsub("-$", "", new_names)
+
+  return(new_names)
+}
+
 
 add_record_column <- function(df) {
   df$Record <- seq(1, nrow(df))
@@ -208,7 +229,6 @@ print("Filter to mean columns + ActivityLabel, Subject")
 selected_columns_data_means <- selected_columns_data %>%
   select(contains("mean"), "ActivityLabel", "Subject")
 
-# print(colnames(selected_columns_data_means))
 selected_columns_data_means_grouped <- selected_columns_data_means %>%
   group_by(Subject, ActivityLabel) %>%
   summarise(
@@ -226,6 +246,7 @@ path_to_output_dir <- "Data"
 path_to_selected_columns_data_means <- paste(path_to_output_dir, "merged_means-by-activity-and-subject.txt", sep = "/")
 print(paste("Processed Data (OUTPUT): Saving the means data, grouped by Activity and Subject ->", path_to_selected_columns_data_means))
 write.table(selected_columns_data_means_grouped, path_to_selected_columns_data_means, row.names = FALSE)
+short_summary(selected_columns_data_means_grouped)
 
 print_section("Done - Processed Data")
 print(list.files(path_to_output_dir, full.names = TRUE))

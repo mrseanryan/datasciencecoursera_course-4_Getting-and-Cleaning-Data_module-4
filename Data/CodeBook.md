@@ -14,11 +14,7 @@ A description of how the data was collected:
 
 1. The variables (including units) in the data set
 
-- "Record" - The record ID
-- "Subject" - The subject ID
-- "ActivityLabel" - The activity label
-
-Other columns have a naming convention:
+Other variables (columns) have a naming convention:
 
 - angle: Angle between two vectors.
 - Time: accelerometer and gyroscope 3-axial raw signals in time domain. In the raw data, they were original captured at a constant rate of 50 Hz and then filtered for noise (see the raw readme).
@@ -29,6 +25,13 @@ Other columns have a naming convention:
 - Accelerometer - the accerometer record
 - Gravity - the gravity element
 - mean_ prefix: to indicate this is a mean of the grouped variables (grouped by Subject, ActivityLabel).
+
+Variables (columns):
+
+- "Record" - The record ID
+- "Subject" - The subject ID
+- "ActivityLabel" - The activity label
+
 
 2. The summary choices made
 
